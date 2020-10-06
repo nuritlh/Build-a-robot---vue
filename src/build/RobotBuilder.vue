@@ -1,6 +1,7 @@
 <template>
   <div class="content">
     <div class="preview">
+      <CollapsContent></CollapsContent>
       <CollapsContent>
         <div class="preview-content">
           <div class="top-row">
@@ -16,9 +17,8 @@
         </div>
         </div>
         </CollapsContent>
+        <button class="add-to-cart" @click="addToCart()">Add To Chrt</button>
       </div>
-      <button class="add-to-cart" @click="addToCart()">Add To Chrt</button>
-
     <div class="top-row">
       <div class="robo-name">
         {{selectedRobot.head.title}}
@@ -77,10 +77,11 @@
 <script>
 import availableParts from '../data/parts';
 import PartSelectors from './PartSelector.vue';
+import CollapsContent from '../shared/CollapsContent.vue';
 
 export default {
   name: 'RobotBuilder',
-  components: { PartSelectors },
+  components: { PartSelectors, CollapsContent },
   data() {
     return {
       availableParts,
