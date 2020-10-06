@@ -81,10 +81,19 @@ import CollapsContent from '../shared/CollapsContent.vue';
 
 export default {
   name: 'RobotBuilder',
+  beforeRouteLeave(to, from, next) {
+    if (this.addedToCart) {
+      next(true);
+    } else {
+      const response = confirm('are you sure?');
+      next(response);
+    }
+  },
   components: { PartSelectors, CollapsContent },
   data() {
     return {
       availableParts,
+      addedToCart: false,
       cart: [],
       selectedRobot: {
         head: {},
@@ -105,6 +114,7 @@ export default {
       + robot.rightArm.cost
       + robot.base.cost;
       this.cart.push({ robot, cost });
+      this.addedToCart = true;
     },
   },
 };
