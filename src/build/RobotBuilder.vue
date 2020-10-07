@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div v-if="availableParts" class="content">
     <div class="preview">
       <CollapsContent>
         <div class="preview-content">
@@ -57,12 +57,14 @@
 </template>
 
 <script>
-import availableParts from '../data/parts';
 import PartSelectors from './PartSelector.vue';
 import CollapsContent from '../shared/CollapsContent.vue';
 
 export default {
   name: 'RobotBuilder',
+  created() {
+    this.$store.dispatch('getParts');
+  },
   beforeRouteLeave(to, from, next) {
     if (this.addedToCart) {
       next(true);
@@ -74,7 +76,6 @@ export default {
   components: { PartSelectors, CollapsContent },
   data() {
     return {
-      availableParts,
       addedToCart: false,
       cart: [],
       selectedRobot: {
@@ -86,7 +87,11 @@ export default {
       },
     };
   },
-  computed: {},
+  computed: {
+    availableParts() {
+      return this.$store.state.parts;
+    },
+  },
   methods: {
     addToCart() {
       const robot = this.selectedRobot;
@@ -95,7 +100,8 @@ export default {
         + robot.torso.cost
         + robot.rightArm.cost
         + robot.base.cost;
-      this.$store.commit('addRobotToCart', {robot, cost});
+      this.$store.dispatch('addRobotToCart', {robot, cost})
+      .then(() => this.$router.push('/cart'));
       this.addedToCart = true;
     },
   },

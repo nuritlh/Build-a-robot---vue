@@ -18,6 +18,7 @@ module.exports = {
         'arrow-parens': 'off',
         'object-curly-newline': 'off',
         'object-curly-spacing': 'off',
-        'no-restricted-globals': 'off'
+        'no-restricted-globals': 'off',
+        'no-alert': 'off',
     },
 };
