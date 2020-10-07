@@ -1,4 +1,3 @@
-  
 <template>
   <div>
     <h2>Arms</h2>
@@ -13,6 +12,7 @@
 
 <script>
 import parts from '../data/parts';
+
 export default {
   name: 'RobotArms',
   data() {

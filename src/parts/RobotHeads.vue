@@ -12,6 +12,7 @@
 
 <script>
 import parts from '../data/parts';
+
 export default {
   name: 'RobotHeads',
   data() {
