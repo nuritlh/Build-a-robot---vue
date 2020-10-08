@@ -20,5 +20,6 @@ module.exports = {
         'object-curly-spacing': 'off',
         'no-restricted-globals': 'off',
         'no-alert': 'off',
+        'no-param-reassign': 'off',
     },
 };
